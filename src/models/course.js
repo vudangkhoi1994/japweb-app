@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const validator = require('validator')
 
 const CourseSchema = mongoose.Schema({
     name: {
@@ -14,6 +13,13 @@ const CourseSchema = mongoose.Schema({
 }, {
     timestamps: true
 })
+
+CourseSchema.virtual('units', {
+    ref: 'Unit',
+    localField: '_id',
+    foreignField: 'course' //fk
+})
+
 
 const Course = mongoose.model('Course', CourseSchema)
 
