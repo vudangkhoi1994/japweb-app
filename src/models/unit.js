@@ -28,6 +28,4 @@ const UnitSchema = new mongoose.Schema(
     },
 )
 
-
-
 module.exports = mongoose.model('Unit', UnitSchema);

@@ -10,7 +10,6 @@ router.get('/allcourses', CourseController.getAllCourse)
 
 router.patch('/courses/:id', CourseController.updateCourse)
 
-
 router.delete('/courses/:id', CourseController.deleteCourse)
 
 module.exports = router

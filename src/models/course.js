@@ -20,7 +20,6 @@ CourseSchema.virtual('units', {
     foreignField: 'course' //fk
 })
 
-
 const Course = mongoose.model('Course', CourseSchema)
 
 module.exports = Course

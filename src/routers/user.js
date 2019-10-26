@@ -21,5 +21,4 @@ router.patch('/users/me', userAuth, UserController.updateProfile)
 router.delete('/users/me', userAuth, UserController.deleteProfile)
 router.delete('/users/me/avatar', userAuth, UserController.deleteAvatar)
 
-
 module.exports = router
