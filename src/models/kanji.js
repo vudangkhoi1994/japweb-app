@@ -1,44 +1,58 @@
 const mongoose = require('mongoose')
 
 const KanjiExampleSchema = mongoose.Schema({
-    w: {
-        type: String
+    word: { 
+        type: String,
+        trim: true
     },
-    p: {
-        type: String
+    pronuncitaion: {
+        type: String,
+        trim: true
     },
-    m: {
-        type: String
+    meaning: {
+        type: String,
+        trim: true
     }
 })
 
+const KanjiRadicalSchema = mongoose.Schema({
+    image:{
+        type: String,
+        trim: true
+    },
+    strokes: {
+        type: Number
+    }
+    
+})
+
 const KanjiSchema = mongoose.Schema({
-    kanji: {
+    character: {
         type: String,
         trim: true,
         unique: true,
     },
+    meaning: {
+        type: String,
+        trim: true
+    },
     onyomi: {
-        type: String
+        type: String,
+        trim: true
     },
     kunyomi: {
-        type: String
+        type: String,
+        trim: true
     },
     level: {
         type: String,
         enum: ['n5', 'n4', 'n3', 'n2', 'n1'],
         default: 'n5'
     },
-    stroke_url: {
-        type: String
+    radical: {
+        type: KanjiRadicalSchema
     },
-    stroke_number: {
-        type: Number
-    },
-    example_on: [{
-        type: KanjiExampleSchema
-    }],
-    example_kun: [{
+    examples: [{
         type: KanjiExampleSchema
     }]
 }, {

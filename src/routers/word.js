@@ -9,6 +9,6 @@ router.get('/allwords', WordController.getAllWord)
 
 router.patch('/words/:id', WordController.updateWord)
 
-router.delete('/words/:id', WordController.deleteWord )
+router.delete('/words/:id', WordController.deleteWord)
 
 module.exports = router
