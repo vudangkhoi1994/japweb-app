@@ -6,7 +6,7 @@ const CourseController = require('../controllers/course')
 router.post('/courses/create', CourseController.addCourse)
 
 router.get('/courses/:id', CourseController.getCourseById)
-router.get('/coursesAll', CourseController.getAllCourse)
+router.get('/allcourses', CourseController.getAllCourse)
 
 router.patch('/courses/:id', CourseController.updateCourse)
 

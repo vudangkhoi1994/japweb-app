@@ -4,7 +4,7 @@ async function addCourse(req, res) {
     const course = new Course(req.body)
     try {
         await course.save()
-        res.status(201).send({ course })
+        res.status(201).send(course )
     } catch (e) {
         res.status(500).send(e)
     }
