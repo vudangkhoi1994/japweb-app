@@ -47,7 +47,7 @@ async function updateCourse(req, res) {
     //end of error handler
 
     try {
-        const course = await Course.findOne({_id: req.params.id})
+        const course = await Course.findById({_id: req.params.id})
 
         if (!course) {
             return res.status(404).send({ error: 'Course not found' })

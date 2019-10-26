@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const GrammarSchema = new mongoose.Schema(
     {
-        title: {
+        name: {
             type: String,
             require: true
         },
