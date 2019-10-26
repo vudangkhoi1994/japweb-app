@@ -88,9 +88,7 @@ async function updateteExample(req, res) {
             return res.status(404).send({ error: 'Example not found' })
         }
 
-        updateKeys.forEach((updateKey) =>  {
-            kanji.examples.id(req.params.eid)[updateKey] = req.body[updateKey]
-        })
+        updateKeys.forEach((updateKey) =>  kanji.examples.id(req.params.eid)[updateKey] = req.body[updateKey])
 
         await kanji.save()
         res.send(kanji)

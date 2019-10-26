@@ -4,7 +4,7 @@ async function addCourse(req, res) {
     const course = new Course(req.body)
     try {
         await course.save()
-        res.status(201).send(course )
+        res.status(201).send(course)
     } catch (e) {
         res.status(500).send(e)
     }
@@ -47,30 +47,30 @@ async function updateCourse(req, res) {
     //end of error handler
 
     try {
-        const course = await Course.findById({_id: req.params.id})
+        const course = await Course.findById({ _id: req.params.id })
 
         if (!course) {
             return res.status(404).send({ error: 'Course not found' })
         }
 
         updateKeys.forEach((updateKey) => course[updateKey] = req.body[updateKey])
+
         await course.save()
         res.send(course)
     } catch (e) {
         res.status(500).send(e)
     }
-
 }
 
-async function deleteCourse (req, res){
+async function deleteCourse(req, res) {
     try {
-        const course = await Course.findByIdAndDelete({_id: req.params.id})
+        const course = await Course.findByIdAndDelete({ _id: req.params.id })
         if (!course) {
             return res.status(404).send({ error: 'Course not found' })
         }
-        res.send({message: 'Course deleted'})
+        res.send({ message: 'Course deleted' })
     } catch (e) {
-        res.status(500).send(e)        
+        res.status(500).send(e)
     }
 }
 

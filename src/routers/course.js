@@ -1,7 +1,7 @@
 const express = require('express')
 const router = new express.Router()
 const CourseController = require('../controllers/course')
-// const isAdmin= require('../middleware/isAdmin')
+// TODO: accAuth
 
 router.post('/courses/create', CourseController.addCourse)
 

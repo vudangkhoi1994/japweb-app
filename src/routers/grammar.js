@@ -1,7 +1,7 @@
 const express = require('express')
 const router = new express.Router()
 const grammarController = require('../controllers/grammar')
-//need grammarAthu
+//TODO: grammarAthu
 
 router.post('/grammars/create', grammarController.addGrammar)
 

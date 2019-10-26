@@ -1,6 +1,7 @@
 const express = require('express')
 const router = new express.Router()
 const kanjiController = require('../controllers/kanji')
+//TODO: accAuth
 
 router.post('/kanjis/create', kanjiController.addKanji)
 

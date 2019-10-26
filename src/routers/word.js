@@ -1,6 +1,7 @@
 const express = require('express')
 const router = new express.Router()
 const WordController = require('../controllers/word')
+//TODO: accAuth
 
 router.post('/words/create', WordController.addWord)
 
