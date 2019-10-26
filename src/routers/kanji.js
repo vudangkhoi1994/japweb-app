@@ -1,17 +1,18 @@
 const express = require('express')
 const router = new express.Router()
 const kanjiController = require('../controllers/kanji')
-//TODO: accAuth
+const userAuth = require('../middleware/userAuth')
+const roleAuth = require('../middleware/roleAuth')
 
-router.post('/kanjis/create', kanjiController.addKanji)
+router.post('/kanjis/create', userAuth, roleAuth, kanjiController.addKanji)
 
 router.get('/kanjis/:id', kanjiController.getKanjiById)
-router.get('/allkanjis', kanjiController.getAllKanji)
+router.get('/allkanjis', userAuth, roleAuth, kanjiController.getAllKanji)
 
-router.patch('/kanjis/:id', kanjiController.updateKanji)
-router.patch('/kanjis/:kid/examples/:eid', kanjiController.updateteExample)
+router.patch('/kanjis/:id', userAuth, roleAuth, kanjiController.updateKanji)
+router.patch('/kanjis/:kid/examples/:eid', userAuth, roleAuth, kanjiController.updateteExample)
 
-router.delete('/kanjis/:id', kanjiController.deleteKanji)
-router.delete('/kanjis/:kid/examples/:eid', kanjiController.deleteExample)
+router.delete('/kanjis/:id', userAuth, roleAuth, kanjiController.deleteKanji)
+router.delete('/kanjis/:kid/examples/:eid', userAuth, roleAuth, kanjiController.deleteExample)
 
 module.exports = router

@@ -1,15 +1,16 @@
 const express = require('express')
 const router = new express.Router()
 const CourseController = require('../controllers/course')
-// TODO: accAuth
+const userAuth = require('../middleware/userAuth')
+const roleAuth = require('../middleware/roleAuth')
 
-router.post('/courses/create', CourseController.addCourse)
+router.post('/courses/create', userAuth, roleAuth ,CourseController.addCourse)
 
 router.get('/courses/:id', CourseController.getCourseById)
 router.get('/allcourses', CourseController.getAllCourse)
 
-router.patch('/courses/:id', CourseController.updateCourse)
+router.patch('/courses/:id', userAuth, roleAuth, CourseController.updateCourse)
 
-router.delete('/courses/:id', CourseController.deleteCourse)
+router.delete('/courses/:id', userAuth, roleAuth, CourseController.deleteCourse)
 
 module.exports = router
