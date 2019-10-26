@@ -21,19 +21,7 @@ const UnitSchema = new mongoose.Schema(
         course: {
             type: mongoose.Types.ObjectId,
             ref: 'Course'
-        },
-        words: [{
-            type: mongoose.Types.ObjectId,
-            ref: 'Word'
-        }],
-        grammars: [{
-            type: mongoose.Types.ObjectId,
-            ref: 'Grammar'
-        }],
-        kanjis: [{
-            type: mongoose.Types.ObjectId,
-            ref: 'Kanji'
-        }]
+        }
     },
     {
         timestamps: true
