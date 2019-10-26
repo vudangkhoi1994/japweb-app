@@ -25,7 +25,9 @@ const KanjiSchema = mongoose.Schema({
         type: String
     },
     level: {
-        type: Number
+        type: String,
+        enum: ['n5', 'n4', 'n3', 'n2', 'n1'],
+        default: 'n5'
     },
     stroke_url: {
         type: String
