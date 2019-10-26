@@ -1,47 +1,39 @@
 const mongoose = require('mongoose');
 
-const WordSchema = new mongoose.Schema(
-    {
-        word: {
-            type: String,
-            trim: true,
-        },
-        kanji: {
-            type: String,
-            trim: true
-        },
-        meaning: {
-            type: String,
-            trim: true,
-        },
-        audio: {
-            type: String,
-            trim: true,
-            default: ''
-        },
-        image: {
-            type: String,
-            trim: true,
-            default: ''
-        },
-        type: {
-            type: String,
-            enum: [
-                'n',    //Danh tu
-                'v1',   //Dong tu loai I
-                'v2',   //Dong tu loai II
-                'v3',   //Dong tu loai III
-                'adj1', //Tinh tu duoi [i]
-                'adj2', //Tinh tu duoi [na]
-                'adv'   //Pho tu
-            ],
-            default: 'n'
-        }
+const WordSchema = new mongoose.Schema({
+    kana: {
+        type: String,
+        trim: true,
+        required: true
     },
-    {
-        timestamps: true
+    kanji: {
+        type: String,
+        trim: true
     },
-)
+    meaning: {
+        type: String,
+        trim: true,
+    },
+    audio: {
+        type: String,
+        trim: true,
+    },
+    image: {
+        type: String,
+        trim: true,
+    },
+    type: {
+        type: String,
+        enum: ['n', 'v1', 'v2', 'v3', 'adj1', 'adj2', 'adv'],
+        default: 'n'
+    },
+    unit: {
+        type: mongoose.Types.ObjectId,
+        ref: 'Unit'
+    }
+}, {
+    timestamps: true
+})
 
 const Word = mongoose.model('Word', WordSchema)
 
