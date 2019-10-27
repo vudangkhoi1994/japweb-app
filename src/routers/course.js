@@ -8,6 +8,7 @@ router.post('/courses/create', userAuth, roleAuth ,CourseController.addCourse)
 
 router.get('/courses/:id', CourseController.getCourseById)
 router.get('/allcourses', CourseController.getAllCourse)
+router.get('/courses/:id/units', CourseController.getAllCourse)
 
 router.patch('/courses/:id', userAuth, roleAuth, CourseController.updateCourse)
 

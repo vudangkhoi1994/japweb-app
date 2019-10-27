@@ -54,7 +54,11 @@ const KanjiSchema = mongoose.Schema({
     },
     examples: [{
         type: KanjiExampleSchema
-    }]
+    }],
+    unitid: {
+        type: mongoose.Types.ObjectId,
+        ref: 'Unit'
+    }
 }, {
     timestap: true
 })

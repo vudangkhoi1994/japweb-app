@@ -1,6 +1,9 @@
 const Unit = require('../models/unit')
+const Word = require('../models/word')
+const Kanji = require('../models/kanji')
+const Grammar = require('../models/grammar')
 
-async function addUnit (req, res){
+async function addUnit(req, res) {
     const unit = new Unit(req.body)
     try {
         await unit.save()
@@ -10,7 +13,7 @@ async function addUnit (req, res){
     }
 }
 
-async function getUnitById (req, res){
+async function getUnitById(req, res) {
     const _id = req.params.id
     try {
         const unit = await Unit.findById(_id)
@@ -23,7 +26,7 @@ async function getUnitById (req, res){
     }
 }
 
-async function getAllUnit (req, res){
+async function getAllUnit(req, res) {
     try {
         const units = await Unit.find({})
         if (!units) {
@@ -35,34 +38,70 @@ async function getAllUnit (req, res){
     }
 }
 
-async function updateUnit (req, res){
-        // Error Handler
-        const updateKeys = Object.keys(req.body)
-        const allowedUpdateKeys = ['name', 'description']
-        const isValidUpdateKey = updateKeys.every((updateKey) => allowedUpdateKeys.includes(updateKey))
-    
-        if (!isValidUpdateKey) {
-            return res.status(400).send({ error: 'Invalid fields!' })
-        }
-        //end of error handler
-    
-        try {
-            const unit = await Unit.findById({_id: req.params.id})
-    
-            if (!unit) {
-                return res.status(404).send({ error: 'Unit not found' })
-            }
-   
-            updateKeys.forEach((updateKey) => unit[updateKey] = req.body[updateKey])
+async function updateUnit(req, res) {
+    // Error Handler
+    const updateKeys = Object.keys(req.body)
+    const allowedUpdateKeys = ['name', 'description']
+    const isValidUpdateKey = updateKeys.every((updateKey) => allowedUpdateKeys.includes(updateKey))
 
-            await unit.save()
-            res.send(unit)
-        } catch (e) {
-            res.status(500).send(e)
+    if (!isValidUpdateKey) {
+        return res.status(400).send({ error: 'Invalid fields!' })
+    }
+    //end of error handler
+
+    try {
+        const unit = await Unit.findById({ _id: req.params.id })
+
+        if (!unit) {
+            return res.status(404).send({ error: 'Unit not found' })
         }
+
+        updateKeys.forEach((updateKey) => unit[updateKey] = req.body[updateKey])
+
+        await unit.save()
+        res.send(unit)
+    } catch (e) {
+        res.status(500).send(e)
+    }
 }
 
-async function deleteUnit (req, res){
+async function getWordsUnit(req, res) {
+    try {
+        const words = await Word.find({unitid : req.params.id})
+        if(!words) {
+            return res.status(404).send({message: 'No words found'})
+        }
+        res.send(words)
+    } catch (e) {
+        res.status(500).send(0)
+    }
+}
+
+async function getKanjisUnit(req, res) {
+    try {
+        const kanjis = await Kanji.find({unitid : req.params.id})
+        if(!kanjis) {
+            return res.status(404).send({message: 'No kanjis found'})
+        }
+        res.send(kanjis)
+    } catch (e) {
+        res.status(500).send(0)
+    }
+}
+
+async function getGrammarsUnit(req, res) {
+    try {
+        const grammars = await Grammar.find({unitid : req.params.id})
+        if(!grammars) {
+            return res.status(404).send({message: 'No grammar found'})
+        }
+        res.send(grammars)
+    } catch (e) {
+        res.status(500).send(0)
+    }
+}
+
+async function deleteUnit(req, res) {
     try {
         const unit = await Unit.findByIdAndDelete({ _id: req.params.id })
         if (!unit) {
@@ -79,5 +118,9 @@ module.exports = {
     getUnitById,
     getAllUnit,
     updateUnit,
+    getWordsUnit,
+    getWordsUnit,
+    getGrammarsUnit,
+    getKanjisUnit,
     deleteUnit
 }

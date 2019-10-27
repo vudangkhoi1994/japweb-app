@@ -1,4 +1,5 @@
 const Course = require('../models/course')
+const Unit = require('../models/unit')
 
 async function addCourse(req, res) {
     const course = new Course(req.body)
@@ -62,6 +63,18 @@ async function updateCourse(req, res) {
     }
 }
 
+async function getUnitsCrouse(req, res) {
+    try {
+        const units = await Unit.find({ unitid: req.params.id })
+        if (!units) {
+            return res.status(404).send({ message: 'No units found' })
+        }
+        res.send(units)
+    } catch (e) {
+        res.status(500).send(0)
+    }
+}
+
 async function deleteCourse(req, res) {
     try {
         const course = await Course.findByIdAndDelete({ _id: req.params.id })
@@ -79,5 +92,6 @@ module.exports = {
     getCourseById,
     getAllCourse,
     updateCourse,
+    getUnitsCrouse,
     deleteCourse
 }

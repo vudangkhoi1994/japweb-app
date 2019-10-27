@@ -27,7 +27,7 @@ const WordSchema = new mongoose.Schema({
         enum: ['n', 'v1', 'v2', 'v3', 'adj1', 'adj2', 'adv'],
         default: 'n'
     },
-    unit: {
+    unitid: {
         type: mongoose.Types.ObjectId,
         ref: 'Unit'
     }

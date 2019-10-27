@@ -17,7 +17,7 @@ const CourseSchema = mongoose.Schema({
 CourseSchema.virtual('units', {
     ref: 'Unit',
     localField: '_id',
-    foreignField: 'course' //fk
+    foreignField: 'courseid' //foreign key
 })
 
 const Course = mongoose.model('Course', CourseSchema)
