@@ -5,7 +5,7 @@ const roleAuth = async (req, res, next) => {
         const user = await User.findById(req.user._id)
         console.log(user)
         if (user.role !== 'super-admin') {
-            throw new Error('Not admin')
+            throw new Error()
         }
         next()
     } catch (e) {
