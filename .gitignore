@@ -1,2 +1,5 @@
 node_modules/
 config/*.env
+tmp/
+public/css/bootstrap.min.css
+public/img
