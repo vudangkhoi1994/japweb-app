@@ -2,7 +2,7 @@ const express = require('express')
 require('./db/mongoose')
 const path = require('path')
 const hbs = require('hbs')
-const router = new express.Router()
+const router = new express.Router()//?
 
 const userRouter = require('./routers/user')
 const courseRouter = require('./routers/course')
@@ -27,6 +27,14 @@ hbs.registerPartials(partialsPath)
 
 // Set up static diretory to serve
 app.use(express.static(publicDirectoryPath))
+
+//Enable CORS
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://127.0.0.1:3000/"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+  
 
 app.use(userRouter)
 app.use(courseRouter)
