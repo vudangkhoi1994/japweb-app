@@ -5,8 +5,8 @@ const userAuth = require('../middleware/userAuth')
 const avatarAuth = require('../middleware/avatarAuth')
 const roleAuth = require('../middleware/roleAuth')
 
-// router.post('/users/create', UserController.addUser) // => No authentication for testing
-router.post('/users/create', userAuth, roleAuth, UserController.addUser)
+router.post('/users/create', UserController.addUser) // => No authentication for testing
+// router.post('/users/create', userAuth, roleAuth, UserController.addUser)
 router.post('/users/login', UserController.login)
 router.post('/users/logout', userAuth, UserController.logout)
 router.post('/users/logoutAll', userAuth, UserController.logoutAll)
@@ -14,6 +14,7 @@ router.post('/users/me/avatar', userAuth, avatarAuth, UserController.uploadAvata
     res.status(400).send({error: error.message})
 })
 
+router.get(('/allusers'), userAuth, roleAuth, UserController.getAllUsers)
 router.get(('/users/me'), userAuth, UserController.getMyProfile)
 router.get('/users/:id', UserController.getUserById)
 router.get('/users/:id/avatar', UserController.getAvatarById)

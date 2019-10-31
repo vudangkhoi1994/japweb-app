@@ -12,6 +12,18 @@ async function addUser(req, res) {
     }
 }
 
+async function getAllUsers(re, res) {
+    try {
+        const users = await User.find({});
+        if (!users) {
+            res.status(404).send({error: "No users"})
+        }
+        res.send(users)
+    } catch (error) {
+        res.status(500).send(e)
+    }
+}
+
 async function getUserById(req, res) {
     const _id = req.params.id // can't fixed problem yet
 
@@ -98,7 +110,7 @@ async function logoutAll(req, res) {
 
 async function uploadAvatar(req, res) {
     //resize and convert to png using sharp module
-    const buffer = await sharp(req.file.buffer).resize({width : 250, heigh : 250}).png().toBuffer()
+    const buffer = await sharp(req.file.buffer).resize({ width: 250, heigh: 250 }).png().toBuffer()
     req.user.avatar = buffer
     await req.user.save()
     res.send({ message: 'Avatar uploaded' })
@@ -113,12 +125,12 @@ async function deleteAvatar(req, res) {
 async function getAvatarById(req, res) {
     try {
         const user = await User.findById(req.params.id)
-        
-        if(!user || !user.avatar) {
+
+        if (!user || !user.avatar) {
             throw new Error()
         }
 
-        res.set('Content-Type','image/jpg')
+        res.set('Content-Type', 'image/jpg')
         res.send(user.avatar)
     } catch (e) {
         res.status(404).send(e)
@@ -127,6 +139,7 @@ async function getAvatarById(req, res) {
 
 module.exports = {
     addUser,
+    getAllUsers,
     getUserById,
     updateProfile,
     deleteProfile,
