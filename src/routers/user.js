@@ -5,8 +5,8 @@ const userAuth = require('../middleware/userAuth')
 const avatarAuth = require('../middleware/avatarAuth')
 const roleAuth = require('../middleware/roleAuth')
 
-router.post('/users/create', UserController.addUser) // => No authentication for testing
-// router.post('/users/create', userAuth, roleAuth, UserController.addUser)
+router.post('/users/create', UserController.addUser) // sign up no auth
+// router.post('/users/create', userAuth, roleAuth, UserController.addUser) // => for testing auth
 router.post('/users/login', UserController.login)
 router.post('/users/logout', userAuth, UserController.logout)
 router.post('/users/logoutAll', userAuth, UserController.logoutAll)
