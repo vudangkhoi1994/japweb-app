@@ -14,7 +14,7 @@ router.post('/users/me/avatar', userAuth, avatarAuth, UserController.uploadAvata
     res.status(400).send({error: error.message})
 })
 
-router.get(('/allusers'), userAuth, roleAuth, UserController.getAllUsers)
+router.get(('/allusers'), UserController.getAllUsers)
 router.get(('/users/me'), userAuth, UserController.getMyProfile)
 router.get('/users/:id', UserController.getUserById)
 router.get('/users/:id/avatar', UserController.getAvatarById)
