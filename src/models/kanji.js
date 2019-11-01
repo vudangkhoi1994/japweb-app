@@ -15,17 +15,6 @@ const KanjiExampleSchema = mongoose.Schema({
     }
 })
 
-const KanjiRadicalSchema = mongoose.Schema({
-    image:{
-        type: String,
-        trim: true
-    },
-    strokes: {
-        type: Number
-    }
-    
-})
-
 const KanjiSchema = mongoose.Schema({
     character: {
         type: String,
@@ -49,8 +38,12 @@ const KanjiSchema = mongoose.Schema({
         enum: ['n5', 'n4', 'n3', 'n2', 'n1'],
         default: 'n5'
     },
-    radical: {
-        type: KanjiRadicalSchema
+    image:{
+        type: String,
+        trim: true
+    },
+    strokes: {
+        type: Number
     },
     examples: [{
         type: KanjiExampleSchema

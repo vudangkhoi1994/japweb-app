@@ -40,7 +40,7 @@ async function getAllKanji(req, res) {
 
 async function updateKanji(req, res) {
     const updateKeys = Object.keys(req.body)
-    const allowedUpdateKeys = ['character', 'meaning', 'onyomi', 'kunyomi', 'level', 'radical', 'examples']
+    const allowedUpdateKeys = ['character', 'meaning', 'onyomi', 'kunyomi', 'level', 'image', 'strokes', 'examples', 'unitid']
     const isValidUpdateKey = updateKeys.every((updateKey) => allowedUpdateKeys.includes(updateKey))
 
     if (!isValidUpdateKey) {
