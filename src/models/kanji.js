@@ -53,7 +53,7 @@ const KanjiSchema = mongoose.Schema({
         ref: 'Unit'
     }
 }, {
-    timestamp: true
+    timestamps: true
 })
 
 const Kanji = mongoose.model('Kanji', KanjiSchema)
