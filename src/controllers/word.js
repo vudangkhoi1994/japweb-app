@@ -37,17 +37,7 @@ async function getAllWord (req, res) {
     }
 }
 
-async function updateWord (req, res) {
-        // Error Handler
-        const updateKeys = Object.keys(req.body)
-        const allowedUpdateKeys = ['kana', 'kanji', 'meaning', 'audio', 'image', 'type' ]
-        const isValidUpdateKey = updateKeys.every((updateKey) => allowedUpdateKeys.includes(updateKey))
-    
-        if (!isValidUpdateKey) {
-            return res.status(400).send({ error: 'Invalid fields!' })
-        }
-        //end of error handler
-    
+async function updateWord (req, res) {    
         try {
             const word = await Word.findOne({_id: req.params.id})
     

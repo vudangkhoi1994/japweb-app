@@ -39,15 +39,6 @@ async function getAllKanji(req, res) {
 }
 
 async function updateKanji(req, res) {
-    const updateKeys = Object.keys(req.body)
-    const allowedUpdateKeys = ['character', 'meaning', 'onyomi', 'kunyomi', 'level', 'image', 'strokes', 'examples', 'unitid']
-    const isValidUpdateKey = updateKeys.every((updateKey) => allowedUpdateKeys.includes(updateKey))
-
-    if (!isValidUpdateKey) {
-        return res.status(400).send({ error: 'Invalid fields!' })
-    }
-    //end of error handler
-
     try {
         const kanji = await Kanji.findById(req.params.id)
 

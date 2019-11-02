@@ -39,16 +39,6 @@ async function getAllUnit(req, res) {
 }
 
 async function updateUnit(req, res) {
-    // Error Handler
-    const updateKeys = Object.keys(req.body)
-    const allowedUpdateKeys = ['name', 'description', 'video', 'document']
-    const isValidUpdateKey = updateKeys.every((updateKey) => allowedUpdateKeys.includes(updateKey))
-
-    if (!isValidUpdateKey) {
-        return res.status(400).send({ error: 'Invalid fields!' })
-    }
-    //end of error handler
-
     try {
         const unit = await Unit.findById({ _id: req.params.id })
 

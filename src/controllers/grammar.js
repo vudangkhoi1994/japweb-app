@@ -37,16 +37,6 @@ async function getAllGrammar (req,res) {
 }
 
 async function updateGrammar (req,res) {
-    // Error Handler
-    const updateKeys = Object.keys(req.body)
-    const allowedUpdateKeys = ['name', 'content', 'level']
-    const isValidUpdateKey = updateKeys.every((updateKey) => allowedUpdateKeys.includes(updateKey))
-
-    if (!isValidUpdateKey) {
-        return res.status(400).send({ error: 'Invalid fields!' })
-    }
-    //end of error handler
-
     try {
         const grammar = await Grammar.findById({_id: req.params.id})
         

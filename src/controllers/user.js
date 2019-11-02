@@ -47,7 +47,7 @@ async function getMyProfile(req, res) {
 async function updateProfile(req, res) {
     //Error handler
     const updateKeys = Object.keys(req.body)
-    const allowedUpdateKeys = ['name', 'email', 'password', 'age']
+    const allowedUpdateKeys = ['name', 'email', 'password', 'age', 'avatar']
     const isValidUpdateKey = updateKeys.every((updateKey) => allowedUpdateKeys.includes(updateKey))
 
     if (!isValidUpdateKey) {
