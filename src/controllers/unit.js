@@ -20,7 +20,7 @@ async function getUnitById(req, res) {
         if (!unit) {
             return res.status(404).send({ message: 'Unit not found!' })
         }
-        res.send(Unit)
+        res.send(unit)
     } catch (e) {
         res.status(500).send(e)
     }
