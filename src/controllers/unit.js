@@ -41,7 +41,7 @@ async function getAllUnit(req, res) {
 async function updateUnit(req, res) {
     // Error Handler
     const updateKeys = Object.keys(req.body)
-    const allowedUpdateKeys = ['name', 'description']
+    const allowedUpdateKeys = ['name', 'description', 'video', 'document']
     const isValidUpdateKey = updateKeys.every((updateKey) => allowedUpdateKeys.includes(updateKey))
 
     if (!isValidUpdateKey) {
