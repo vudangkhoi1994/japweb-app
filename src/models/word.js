@@ -29,7 +29,8 @@ const WordSchema = new mongoose.Schema({
     },
     unitid: {
         type: mongoose.Types.ObjectId,
-        ref: 'Unit'
+        ref: 'Unit',
+        default: null
     }
 }, {
     timestamps: true
