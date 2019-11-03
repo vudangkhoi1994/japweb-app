@@ -9,7 +9,7 @@ router.post('/words/create',  WordController.addWord)
 router.get('/words/:id', WordController.getWordById)
 router.get('/allwords', WordController.getAllWord)
 
-router.patch('/words/:id', WordController.updateWord)
+router.put('/words/:id', WordController.updateWord)
 
 router.delete('/words/:id',  WordController.deleteWord)
 

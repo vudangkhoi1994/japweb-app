@@ -9,8 +9,8 @@ router.post('/kanjis/create', kanjiController.addKanji)
 router.get('/kanjis/:id', kanjiController.getKanjiById)
 router.get('/allkanjis',  kanjiController.getAllKanji)
 
-router.patch('/kanjis/:id', kanjiController.updateKanji)
-router.patch('/kanjis/:kid/examples/:eid', kanjiController.updateteExample)
+router.put('/kanjis/:id', kanjiController.updateKanji)
+router.put('/kanjis/:kid/examples/:eid', kanjiController.updateteExample)
 
 router.delete('/kanjis/:id', kanjiController.deleteKanji)
 router.delete('/kanjis/:kid/examples/:eid', kanjiController.deleteExample)

@@ -12,7 +12,7 @@ router.get('/units/:id/words', unitController.getWordsUnit)
 router.get('/units/:id/kanjis', unitController.getKanjisUnit)
 router.get('/units/:id/grammars', unitController.getGrammarsUnit)
 
-router.patch('/units/:id', unitController.updateUnit)
+router.put('/units/:id', unitController.updateUnit)
 
 router.delete('/units/:id', unitController.deleteUnit)
 

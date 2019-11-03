@@ -10,7 +10,7 @@ router.get('/courses/:id', CourseController.getCourseById)
 router.get('/allcourses', CourseController.getAllCourse)
 router.get('/courses/:id/units', CourseController.getAllCourse)
 
-router.patch('/courses/:id', CourseController.updateCourse)
+router.put('/courses/:id', CourseController.updateCourse)
 
 router.delete('/courses/:id', CourseController.deleteCourse)
 
