@@ -1,9 +1,9 @@
 const Word = require('../models/word')
 
-async function addWord (req, res) {
+async function addWord(req, res) {
     const word = new Word(req.body)
     console.log(req.body);
-    
+
     try {
         await word.save()
         res.status(201).send(word)
@@ -12,7 +12,7 @@ async function addWord (req, res) {
     }
 }
 
-async function getWordById (req, res) {
+async function getWordById(req, res) {
     const _id = req.params.id
     try {
         const word = await Word.findById(_id)
@@ -25,7 +25,7 @@ async function getWordById (req, res) {
     }
 }
 
-async function getAllWord (req, res) {
+async function getAllWord(req, res) {
     try {
         const words = await Word.find({})
         if (!words) {
@@ -37,31 +37,33 @@ async function getAllWord (req, res) {
     }
 }
 
-async function updateWord (req, res) {    
-        try {
-            const word = await Word.findOne({_id: req.params.id})
-    
-            if (!word) {
-                return res.status(404).send({ error: 'Word not found' })
-            }
-    
-            updateKeys.forEach((updateKey) => word[updateKey] = req.body[updateKey])
-            await word.save()
-            res.send(word)
-        } catch (e) {
-            res.status(500).send(e)
-        }
-}
+async function updateWord(req, res) {
+    const updateKeys = Object.keys(req.body)
 
-async function deleteWord (req, res) {
     try {
-        const word = await Word.findByIdAndDelete({_id: req.params.id})
+        const word = await Word.findOne({ _id: req.params.id })
+
         if (!word) {
             return res.status(404).send({ error: 'Word not found' })
         }
-        res.send({message: 'Word deleted'})
+
+        updateKeys.forEach((updateKey) => word[updateKey] = req.body[updateKey])
+        await word.save()
+        res.send(word)
     } catch (e) {
-        res.status(500).send(e)        
+        res.status(500).send(e)
+    }
+}
+
+async function deleteWord(req, res) {
+    try {
+        const word = await Word.findByIdAndDelete({ _id: req.params.id })
+        if (!word) {
+            return res.status(404).send({ error: 'Word not found' })
+        }
+        res.send({ message: 'Word deleted' })
+    } catch (e) {
+        res.status(500).send(e)
     }
 }
 

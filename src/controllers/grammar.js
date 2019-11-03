@@ -37,6 +37,8 @@ async function getAllGrammar (req,res) {
 }
 
 async function updateGrammar (req,res) {
+    const updateKeys = Object.keys(req.body)
+
     try {
         const grammar = await Grammar.findById({_id: req.params.id})
         

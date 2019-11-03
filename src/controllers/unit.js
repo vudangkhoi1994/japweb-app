@@ -39,6 +39,8 @@ async function getAllUnit(req, res) {
 }
 
 async function updateUnit(req, res) {
+    const updateKeys = Object.keys(req.body)
+
     try {
         const unit = await Unit.findById({ _id: req.params.id })
 

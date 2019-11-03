@@ -37,15 +37,7 @@ async function getAllCourse(req, res) {
 }
 
 async function updateCourse(req, res) {
-    // Error Handler
     const updateKeys = Object.keys(req.body)
-    const allowedUpdateKeys = ['name', 'description']
-    const isValidUpdateKey = updateKeys.every((updateKey) => allowedUpdateKeys.includes(updateKey))
-
-    if (!isValidUpdateKey) {
-        return res.status(400).send({ error: 'Invalid fields!' })
-    }
-    //end of error handler
 
     try {
         const course = await Course.findById({ _id: req.params.id })

@@ -39,6 +39,8 @@ async function getAllKanji(req, res) {
 }
 
 async function updateKanji(req, res) {
+    const updateKeys = Object.keys(req.body)
+
     try {
         const kanji = await Kanji.findById(req.params.id)
 
@@ -47,11 +49,7 @@ async function updateKanji(req, res) {
         }
 
         updateKeys.forEach((updateKey) => {
-            if (updateKey === 'example_on' || updateKey === 'example_kun') {
-                kanji[updateKey] = kanji[updateKey].concat(req.body[updateKey])
-            } else {
-                kanji[updateKey] = req.body[updateKey]
-            }
+            kanji[updateKey] = req.body[updateKey]
         })
         await kanji.save()
         res.send(kanji)
@@ -68,8 +66,8 @@ async function updateteExample(req, res) {
     if (!isValidUpdateKey) {
         return res.status(400).send({ error: 'Invalid fields!' })
     }
-    
-    try{
+
+    try {
         const kanji = await Kanji.findById(req.params.kid)
         if (!kanji) {
             return res.status(404).send({ error: 'Kanji not found' })
@@ -79,7 +77,7 @@ async function updateteExample(req, res) {
             return res.status(404).send({ error: 'Example not found' })
         }
 
-        updateKeys.forEach((updateKey) =>  kanji.examples.id(req.params.eid)[updateKey] = req.body[updateKey])
+        updateKeys.forEach((updateKey) => kanji.examples.id(req.params.eid)[updateKey] = req.body[updateKey])
 
         await kanji.save()
         res.send(kanji)
@@ -89,7 +87,7 @@ async function updateteExample(req, res) {
 }
 
 async function deleteExample(req, res) {
-    try{
+    try {
         const kanji = await Kanji.findById(req.params.kid)
         if (!kanji) {
             return res.status(404).send({ error: 'Kanji not found' })
