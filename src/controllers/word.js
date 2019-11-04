@@ -41,15 +41,14 @@ async function updateWord(req, res) {
     // const updateKeys = Object.keys(req.body)
 
     try {
-        const word = await Word.findOne({ _id: req.params.id })
+        const word = await Word.findOneAndUpdate({ _id: req.params.id }, req.body)
 
         if (!word) {
             return res.status(404).send({ error: 'Word not found' })
         }
 
         // updateKeys.forEach((updateKey) => word[updateKey] = req.body[updateKey])
-        word =req.body
-        await word.save()
+        // await word.save()
         res.send(word)
     } catch (e) {
         res.status(500).send(e)
