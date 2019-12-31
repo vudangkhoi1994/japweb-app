@@ -6,10 +6,8 @@ const CourseSchema = mongoose.Schema({
         require: true,
         trim: true
     },
-    description: {
-        type: String,
-        default: ''
-    }
+    description: String,
+    image: String,
 }, {
     timestamps: true
 })
