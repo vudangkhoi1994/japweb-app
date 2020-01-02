@@ -27,8 +27,8 @@ async function getWordById(req, res) {
 
 async function getAllWord(req, res) {
     try {
-        const { limit, offset } = req.query;
-        const words = await Word.find({}).limit(limit || 10).offset(offset || 0);
+        const { limit, skip } = req.query;
+        const words = await Word.find({}).limit(limit || 10).skip(skip || 0);
         if (!words) {
             return res.status(404).send({ message: 'No word found!' })
         }
