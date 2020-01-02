@@ -57,7 +57,7 @@ async function updateCourse(req, res) {
 
 async function getUnitsCrouse(req, res) {
     try {
-        const units = await Unit.find({ unitid: req.params.id })
+        const units = await Unit.find({ courseid: req.params.id })
         if (!units) {
             return res.status(404).send({ message: 'No units found' })
         }
