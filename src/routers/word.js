@@ -6,11 +6,11 @@ const roleAuth = require('../middleware/roleAuth')
 
 router.post('/words/create',  WordController.addWord)
 
-router.get('/words/:id', WordController.getWordById)
-router.get('/allwords', WordController.getAllWord)
+router.get('/words/:id', userAuth, WordController.getWordById)
+router.get('/allwords', userAuth, roleAuth, WordController.getAllWord)
 
-router.put('/words/:id', WordController.updateWord)
+router.put('/words/:id', userAuth, roleAuth, WordController.updateWord)
 
-router.delete('/words/:id',  WordController.deleteWord)
+router.delete('/words/:id', userAuth, roleAuth, WordController.deleteWord)
 
 module.exports = router

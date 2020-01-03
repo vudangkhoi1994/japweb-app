@@ -8,10 +8,10 @@ router.post('/courses/create', CourseController.addCourse)
 
 router.get('/courses/:id', userAuth, CourseController.getCourseById)
 router.get('/allcourses', CourseController.getAllCourse)
-router.get('/courses/:id/units', CourseController.getUnitsCrouse)
+router.get('/courses/:id/units', userAuth, CourseController.getUnitsCrouse)
 
-router.put('/courses/:id', CourseController.updateCourse)
+router.put('/courses/:id', userAuth, roleAuth, CourseController.updateCourse)
 
-router.delete('/courses/:id', CourseController.deleteCourse)
+router.delete('/courses/:id', userAuth, roleAuth, CourseController.deleteCourse)
 
 module.exports = router
