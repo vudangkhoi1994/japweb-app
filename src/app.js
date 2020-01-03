@@ -1,6 +1,7 @@
 const express = require('express')
 require('dotenv').config()
 require('./db/mongoose')
+const cors = require('cors')
 const path = require('path')
 // const hbs = require('hbs')
 // const router = new express.Router()
@@ -25,18 +26,9 @@ const publicDirectoryPath = path.join(__dirname, '../public')
 // app.set('view engine', 'hbs')
 // app.set('views', viewsPath)
 // hbs.registerPartials(partialsPath)
-
+app.use(cors())
 // Set up static diretory to serve
 app.use(express.static(publicDirectoryPath))
-
-//Enable CORS
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://127.0.0.1:3000"); // update to match the domain you will make the request from
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, GET, DELETE, OPTIONS');
-    next();
-  });
-  
 
 app.use(userRouter)
 app.use(courseRouter)

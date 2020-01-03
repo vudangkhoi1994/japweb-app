@@ -19,7 +19,7 @@ router.get(('/users/me'), userAuth, UserController.getMyProfile)
 router.get('/users/:id', UserController.getUserById)
 router.get('/users/:id/avatar', UserController.getAvatarById)
 
-router.patch('/users/me', userAuth, UserController.updateProfile)
+router.put('/users/me', userAuth, UserController.updateProfile)
 
 router.delete('/users/me', userAuth, UserController.deleteProfile)
 router.delete('/users/me/avatar', userAuth, UserController.deleteAvatar)
